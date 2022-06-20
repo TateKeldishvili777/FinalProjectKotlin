@@ -12,6 +12,7 @@ import com.example.finalproject.models.Movie
 import com.example.finalproject.models.MovieResponse
 import com.example.finalproject.services.MovieApiInterface
 import com.example.finalproject.services.MovieApiService
+import com.example.finalproject.upcomingmovies.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,8 +34,11 @@ class MainActivity : AppCompatActivity() {
 
         val myAdapter = SecondViewPagerAdapter(supportFragmentManager)
 
-        myAdapter.addFragment(MovieTwo(), "Teachers")
-        myAdapter.addFragment(MovieOne(), "Students")
+        myAdapter.addFragment(MovieTwo(), "MovieTwo")
+        myAdapter.addFragment(MovieOne(), "MovieOne")
+        myAdapter.addFragment(MovieTh(), "MovieTh")
+        myAdapter.addFragment(MovieFour(), "MovieFour")
+        myAdapter.addFragment(MovieFive(), "MovieFive")
 
         secondViewPager.adapter  = myAdapter
 
