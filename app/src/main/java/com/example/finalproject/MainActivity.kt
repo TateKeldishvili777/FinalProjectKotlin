@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         intentFilter.addAction("android.intent.action.SCREEN_OFF")
         intentFilter.addAction("android.intent.action.ACTION_POWER_DISCONNECTED")
         intentFilter.addAction("android.intent.action.ACTION_POWER_CONNECTED")
+        intentFilter.addAction("android.intent.action.AIRPLANE_MODE")
         registerReceiver(receiver, intentFilter)
     }
 
