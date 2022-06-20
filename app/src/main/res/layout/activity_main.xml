@@ -34,14 +34,23 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
+
+
             <TextView
-                android:id="@+id/textView2"
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:text="Upcoming Movies"
+                android:layout_marginTop="10sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@color/purple_700"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/myViewpager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:text="Popular Movies"
-                android:textColor="@color/white" />
+                android:layout_height="100sp"/>
+
 
             <Button
                 android:id="@+id/addbtn"
@@ -50,11 +59,22 @@
                 android:text="Add Movie"
                 android:layout_marginLeft="16dp"/>
 
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:text="Popular Movies"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@color/purple_700"/>
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_movies_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
