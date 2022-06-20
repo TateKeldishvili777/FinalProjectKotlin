@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         val myAdapter = SecondViewPagerAdapter(supportFragmentManager)
 
-        myAdapter.addFragment(MovieTwo(), "MovieTwo")
         myAdapter.addFragment(MovieOne(), "MovieOne")
+        myAdapter.addFragment(MovieTwo(), "MovieTwo")
         myAdapter.addFragment(MovieTh(), "MovieTh")
         myAdapter.addFragment(MovieFour(), "MovieFour")
         myAdapter.addFragment(MovieFive(), "MovieFive")
