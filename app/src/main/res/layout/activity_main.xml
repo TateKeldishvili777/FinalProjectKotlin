@@ -49,7 +49,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/myViewpager"
                 android:layout_width="match_parent"
-                android:layout_height="100sp"/>
+                android:layout_height="150sp"/>
 
 
             <Button
