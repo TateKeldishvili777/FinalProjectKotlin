@@ -1,6 +1,10 @@
 package com.example.finalproject
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.IntentFilter
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +12,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -29,6 +35,9 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
+    private val CHANNEL_ID = "channel_id_example_01"
+    private val notificationId = 101
+
     private lateinit var addsBtn: Button
     private lateinit var recv: RecyclerView
     private lateinit var userList:ArrayList<UserData>
@@ -37,6 +46,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        createNotificationChannel()
 
         userList = ArrayList()
 
@@ -49,8 +60,8 @@ class MainActivity : AppCompatActivity() {
         recv.layoutManager = LinearLayoutManager(this)
         recv.adapter = userAdapter
 
-        addsBtn.setOnClickListener { addInfo() }
-
+        addsBtn.setOnClickListener {
+            addInfo()}
 
         rv_movies_list.layoutManager = LinearLayoutManager(this)
         rv_movies_list.setHasFixedSize(true)
@@ -136,6 +147,7 @@ class MainActivity : AppCompatActivity() {
             userAdapter.notifyDataSetChanged()
             Toast.makeText(this,"Adding Movie Description Success", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
+            sendNotification()
         }
         addDialog.setNegativeButton("Cancel"){
                 dialog,_->
@@ -145,5 +157,30 @@ class MainActivity : AppCompatActivity() {
         }
         addDialog.create()
         addDialog.show()
+    }
+
+    private fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val name = "Notification Title"
+            val descriptionText = "Notification Description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID,name,importance).apply {
+                description = descriptionText
+            }
+            val notificationManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification(){
+        val builder = NotificationCompat.Builder(this,CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle("Movie Description")
+            .setContentText("Movie Description Added Successfully")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)){
+            notify(notificationId,builder.build())
+        }
     }
 }
