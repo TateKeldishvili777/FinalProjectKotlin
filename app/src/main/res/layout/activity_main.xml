@@ -68,15 +68,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_movies_list"
                 android:layout_width="match_parent"
-                android:layout_height="395sp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp" />
-            <Button
-                android:id="@+id/addbtn"
-                android:layout_width="150sp"
-                android:layout_height="50sp"
-                android:text="Add Movie"
-                android:layout_gravity="right"
-                android:layout_marginLeft="16dp"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
