@@ -151,16 +151,24 @@ class MainActivity : AppCompatActivity() {
         val addDialog = AlertDialog.Builder(this)
 
         addDialog.setView(v)
+
         addDialog.setPositiveButton("Ok"){
                 dialog,_->
-            val names = userName.text.toString()
-            val movies = movieName.text.toString()
+            if (userName.text.toString().length == 0 || movieName.text.toString().length == 0){
+                Toast.makeText(this, "All fields are required! Try again!", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val names = userName.text.toString()
+                val movies = movieName.text.toString()
 
-            userList.add(UserData("$names","$movies"))
-            userAdapter.notifyDataSetChanged()
-            Toast.makeText(this,"Adding Movie Comment Success", Toast.LENGTH_SHORT).show()
-            sendNotification()
-            dialog.dismiss()
+                userList.add(UserData("$names", "$movies"))
+                userAdapter.notifyDataSetChanged()
+
+
+                Toast.makeText(this, "Adding Movie Comment Success", Toast.LENGTH_SHORT).show()
+                sendNotification()
+                dialog.dismiss()
+            }
         }
         addDialog.setNegativeButton("Cancel"){
                 dialog,_->
@@ -169,13 +177,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        if (userName.text.toString().length == 0){
-            userName.setError("error")
-        }
-        else {
-            addDialog.create()
-            addDialog.show()
-        }
+
+        addDialog.create()
+        addDialog.show()
+
     }
 
     private fun createNotificationChannel(){
