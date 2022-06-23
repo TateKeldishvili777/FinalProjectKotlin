@@ -159,13 +159,8 @@ class MainActivity : AppCompatActivity() {
             userList.add(UserData("$names","$movies"))
             userAdapter.notifyDataSetChanged()
             Toast.makeText(this,"Adding Movie Comment Success", Toast.LENGTH_SHORT).show()
-
-            if (userName.text.toString().length == 0){
-                userName.setError("error")
-            }
-            else{
-                sendNotification()
-            }
+            sendNotification()
+            dialog.dismiss()
         }
         addDialog.setNegativeButton("Cancel"){
                 dialog,_->
@@ -173,8 +168,14 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Cancel", Toast.LENGTH_SHORT).show()
 
         }
-        addDialog.create()
-        addDialog.show()
+
+        if (userName.text.toString().length == 0){
+            userName.setError("error")
+        }
+        else {
+            addDialog.create()
+            addDialog.show()
+        }
     }
 
     private fun createNotificationChannel(){
