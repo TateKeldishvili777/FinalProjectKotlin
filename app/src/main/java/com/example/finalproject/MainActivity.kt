@@ -19,19 +19,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import androidx.viewpager.widget.ViewPager
-import com.example.finalproject.Data.AppDatabase
-import com.example.finalproject.Data.User
 import com.example.finalproject.comments.UserAdapter
 import com.example.finalproject.models.Movie
 import com.example.finalproject.models.MovieResponse
 import com.example.finalproject.services.MovieApiInterface
 import com.example.finalproject.services.MovieApiService
 import com.example.finalproject.upcomingmovies.*
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.add_item.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,14 +44,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "User"
-        ).build()
-
-
-        val userDao = db.userDao()
 
         createNotificationChannel()
 

@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -56,12 +55,6 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
 
-
-    implementation "androidx.room:room-runtime:2.4.2"
-    annotationProcessor "androidx.room:room-compiler:2.4.2"
-    androidTestImplementation "androidx.room:room-testing:2.4.2"
-    implementation "androidx.room:room-ktx:2.4.2"
-    kapt   'androidx.room:room-compiler:2.4.2'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
 
 }
