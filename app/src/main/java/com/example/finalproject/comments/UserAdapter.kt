@@ -2,6 +2,7 @@ package com.example.finalproject.comments
 
 import android.app.AlertDialog
 import android.content.Context
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,14 +38,14 @@ class UserAdapter(val c:Context, val userList: ArrayList<UserData>):RecyclerView
                       val v = LayoutInflater.from(c).inflate(R.layout.add_item,null)
                       val name = v.findViewById<EditText>(R.id.userName)
                       val moviename = v.findViewById<EditText>(R.id.movieName)
-                              AlertDialog.Builder(c)
+                      AlertDialog.Builder(c)
                                       .setView(v)
                                       .setPositiveButton("Ok"){
                                           dialog,_->
                                           position.userName = name.text.toString()
                                           position.movieName = moviename.text.toString()
                                           notifyDataSetChanged()
-                                          Toast.makeText(c,"Movie Description is Edited",Toast.LENGTH_SHORT).show()
+                                          Toast.makeText(c,"Movie Comment is Edited",Toast.LENGTH_SHORT).show()
                                           dialog.dismiss()
 
                                       }
@@ -99,8 +100,8 @@ class UserAdapter(val c:Context, val userList: ArrayList<UserData>):RecyclerView
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
        val newList = userList[position]
-        holder.note.text = newList.userName
-        holder.movie.text = newList.movieName
+        holder.note.text = "Comment: " + newList.userName
+        holder.movie.text = "Movie: " + newList.movieName
     }
 
     override fun getItemCount(): Int {

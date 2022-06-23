@@ -147,6 +147,7 @@ class MainActivity : AppCompatActivity() {
         val userName = v.findViewById<EditText>(R.id.userName)
         val movieName = v.findViewById<EditText>(R.id.movieName)
 
+
         val addDialog = AlertDialog.Builder(this)
 
         addDialog.setView(v)
@@ -154,11 +155,17 @@ class MainActivity : AppCompatActivity() {
                 dialog,_->
             val names = userName.text.toString()
             val movies = movieName.text.toString()
+
             userList.add(UserData("$names","$movies"))
             userAdapter.notifyDataSetChanged()
-            Toast.makeText(this,"Adding Movie Description Success", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-            sendNotification()
+            Toast.makeText(this,"Adding Movie Comment Success", Toast.LENGTH_SHORT).show()
+
+            if (userName.text.toString().length == 0){
+                userName.setError("error")
+            }
+            else{
+                sendNotification()
+            }
         }
         addDialog.setNegativeButton("Cancel"){
                 dialog,_->
@@ -186,8 +193,8 @@ class MainActivity : AppCompatActivity() {
     private fun sendNotification(){
         val builder = NotificationCompat.Builder(this,CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_background)
-            .setContentTitle("Movie Description")
-            .setContentText("Movie Description Added Successfully")
+            .setContentTitle("Movie Comment")
+            .setContentText("Movie Comment Added Successfully")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)){
