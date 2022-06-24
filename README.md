@@ -17,6 +17,7 @@ Movie App - ის ძირითადი ფუნქციონალი �
 * Push Notification
 * Recyclerview
 * Small Validation
+* Menu
 * Fragments
 * AlertDialog
 
