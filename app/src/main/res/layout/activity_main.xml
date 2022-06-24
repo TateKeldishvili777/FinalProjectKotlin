@@ -3,76 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#EFEFEF"
-    tools:context=".MainActivity" >
+    android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_design"
+        android:gravity="center"
+        android:text="Upcoming Movies"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/myViewpager"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <TextView
+        android:id="@+id/tvPopularMovies"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5sp"
+        android:background="@drawable/button_design"
+        android:gravity="center"
+        android:text="Popular Movies"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myViewpager" />
 
-            <TextView
-                android:layout_width="150sp"
-                android:layout_height="30sp"
-                android:layout_gravity="center"
-                android:text="Upcoming Movies"
-                android:layout_marginTop="5sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:background="@drawable/button_design"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movies_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/addingBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPopularMovies" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/myViewpager"
-                android:layout_marginTop="5sp"
-                android:layout_width="match_parent"
-                android:layout_height="150sp"
-                tools:ignore="SpeakableTextPresentCheck" />
+    <Button
+        android:id="@+id/addingBtn"
+        android:layout_width="280sp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#8BC34A"
+        android:text="Add Comment"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@+id/mRecycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="170sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-
-
-            <TextView
-                android:layout_width="150sp"
-                android:layout_height="30sp"
-                android:layout_gravity="center"
-                android:text="Popular Movies"
-                android:layout_marginTop="5sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:background="@drawable/button_design"/>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movies_list"
-                android:layout_width="match_parent"
-                android:layout_height="300sp" />
-
-            <Button
-                android:id="@+id/addingBtn"
-                android:text="Add Comment"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textSize="11sp"
-                android:layout_width="280sp"
-                android:backgroundTint="#8BC34A"
-                android:layout_height="35sp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="170sp"/>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

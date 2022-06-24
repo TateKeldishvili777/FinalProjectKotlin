@@ -8,6 +8,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -48,13 +49,9 @@ class MainActivity : AppCompatActivity() {
         createNotificationChannel()
 
         userList = ArrayList()
-
         addsBtn = findViewById(R.id.addingBtn)
-
         recv = findViewById(R.id.mRecycler)
-
         userAdapter = UserAdapter(this,userList)
-
         recv.layoutManager = LinearLayoutManager(this)
         recv.adapter = userAdapter
 
@@ -67,10 +64,10 @@ class MainActivity : AppCompatActivity() {
             rv_movies_list.adapter = MovieAdapter(movies)
         }
 
-
         val secondViewPager = findViewById<ViewPager>(R.id.myViewpager)
-
         val myAdapter = SecondViewPagerAdapter(supportFragmentManager)
+
+        if(userList.isEmpty()) recv.visibility = View.GONE
 
         myAdapter.addFragment(MovieOne(), "MovieOne")
         myAdapter.addFragment(MovieTwo(), "MovieTwo")
@@ -89,19 +86,17 @@ class MainActivity : AppCompatActivity() {
         intentFilter.addAction("android.intent.action.ACTION_POWER_CONNECTED")
         intentFilter.addAction("android.intent.action.AIRPLANE_MODE")
         registerReceiver(receiver, intentFilter)
+        if(userAdapter.itemCount == 0) mRecycler.visibility = View.GONE
     }
 
     private fun getMovieData(callback: (List<Movie>) -> Unit){
         val apiService = MovieApiService.getInstance().create(MovieApiInterface::class.java)
         apiService.getMovieList().enqueue(object : Callback<MovieResponse> {
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-
             }
-
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 return callback(response.body()!!.movies)
             }
-
         })
     }
 
@@ -130,15 +125,11 @@ class MainActivity : AppCompatActivity() {
     private fun addInfo() {
         val inflter = LayoutInflater.from(this)
         val v = inflter.inflate(R.layout.add_item,null)
-
         val userName = v.findViewById<EditText>(R.id.userName)
         val movieName = v.findViewById<EditText>(R.id.movieName)
-
-
         val addDialog = AlertDialog.Builder(this)
 
         addDialog.setView(v)
-
         addDialog.setPositiveButton("Ok"){
                 dialog,_->
             if (userName.text.toString().length == 0 || movieName.text.toString().length == 0){
@@ -151,23 +142,20 @@ class MainActivity : AppCompatActivity() {
                 userList.add(UserData("$names", "$movies"))
                 userAdapter.notifyDataSetChanged()
 
-
                 Toast.makeText(this, "Adding Movie Comment Success", Toast.LENGTH_SHORT).show()
                 sendNotification()
                 dialog.dismiss()
+                recv.visibility = View.VISIBLE
             }
         }
         addDialog.setNegativeButton("Cancel"){
                 dialog,_->
             dialog.dismiss()
             Toast.makeText(this,"Cancel", Toast.LENGTH_SHORT).show()
-
         }
-
 
         addDialog.create()
         addDialog.show()
-
     }
 
     private fun createNotificationChannel(){

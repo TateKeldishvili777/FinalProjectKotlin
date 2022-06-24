@@ -9,12 +9,12 @@ import com.example.finalproject.models.Movie
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieAdapter(
-    private val movies : List<Movie>
-) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
+    private val movies: List<Movie>
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    class MovieViewHolder(view : View) : RecyclerView.ViewHolder(view){
+    class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val IMAGE_BASE = "https://image.tmdb.org/t/p/w500/"
-        fun bindMovie(movie : Movie){
+        fun bindMovie(movie: Movie) {
             itemView.movie_title.text = movie.title
             itemView.movie_release_date.text = movie.release
             Glide.with(itemView).load(IMAGE_BASE + movie.poster).into(itemView.movie_poster)
