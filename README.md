@@ -21,15 +21,23 @@ Movie App - ის ძირითადი ფუნქციონალი �
 * AlertDialog
 
 
-მოცემულია აპლიკაციის ტავარი გვერდის სქრინი 
+მოცემულია აპლიკაციის რამდენიმე სქრინი 
 
-![](images/screen1.jpg)
+![](images/screen1.jpg) |
+![](images/screen2.jpg) |
+![](images/screen5.jpg) 
+
+![](images/screen3.jpg) |
+![](images/screen4.jpg) 
+
+
 
 
 
 საკონტაქტო ინფორმაცია: 
 
 ტელეფონი: 571 40 42 08
+
 მეილი: tateqeldishvili777@gmail.com
 
 
