@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun sendNotification(){
         val builder = NotificationCompat.Builder(this,CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.baseline_event_note_24)
             .setContentTitle("Movie Comment")
             .setContentText("Movie Comment Added Successfully")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
